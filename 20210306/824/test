@@ -1,0 +1,28 @@
+//Program:- Write a C program to find the sum of the natural number using recursion techniques.
+//General case for finding the sum of natural number
+//sum(n) = n + sum(n-1);
+//The base case for finding the sum of the natural number
+//sum(0) = 0; or sum(1) = 1;
+
+#include<stdio.h>
+
+// recursive function for sum of natural number
+int sum(int n)
+ 
+{
+   if(n==0) return 0; //base case
+   else return( n + sum(n-1) ); //general case
+}
+
+int main()
+{
+   int num;
+
+   printf("Enter a positive integer number: ");
+   scanf("%d",&num);
+
+   printf("Sum of natural numbers 1+2+…+%d = %d",
+                                 num, sum(num) );
+
+   return 0;
+}
