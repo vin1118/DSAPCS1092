@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std; 
+
+int main(void) 
+{   int command = 0;       // user command 
+ 
+    do 
+    {   int N, M; 
+ 
+        cout << endl << "** Permutation Generator **"; 
+        cout << endl << "* 0. Quit                 *"; 
+        cout << endl << "* 1. N numbers from 1..N  *"; 
+        cout << endl << "* 2. M numbers from input *"; 
+        cout << endl << "***************************"; 
+        cout << endl << "Input a choice(0, 1, 2): "; 
+        cin >> command;      // get a command 
+        switch (command) 
+        { case 0: break; 
+            case 1: N = getNO( );     // get the permutation length 
+                    if (openData( ))               // allocate space to keep data 
+                    {    
+                    }   // end if 
+                    closeData( );               // release unused space 
+                    break; 
+            case 2: M = getNO( );               // get the permutation length 
+                    if (openData( ))              // allocate space to keep data 
+                    {   getNum(M);            // get M numbers from input 
+                        cT = clock();            // start timer  
+                        cT = clock() - cT;       // stop timer 
+                        cout << "T = " << (float)cT * 1000 / CLOCKS_PER_SEC << " ms" << endl; 
+                    }   // end if 
+                    closeData(used, ans);     // release unused space 
+                    break; 
+            default: cout << endl << "Command does not exist!" << endl; 
+        } // end switch 
+    } while (command != 0);     // '0': stop the program 
+    system("pause");      // pause the display 
+    return 0; 
+} // end main 
