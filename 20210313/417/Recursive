@@ -1,0 +1,74 @@
+#include <iostream>
+#include <new>
+using namespace std;
+
+unsigned long   m, num, last;
+
+bool            *used = NULL;
+
+int             *ans = NULL;
+
+
+bool openData(int arraySize)
+{   try {
+
+        used = new bool [arraySize];
+        ans = new int [arraySize];
+
+        for (int i = 0; i < arraySize; i++)
+        {   used[i] = false;
+            ans[i] = 0;
+        }   // end for
+    }	// end try
+    catch (std::bad_alloc& ba)
+    {   std::cerr << endl << "bad_alloc caught: " << ba.what() << endl;
+        return false;
+    }   // end catch
+    return true;
+}   // end openData
+
+void outputSeries(void)
+{
+    cout << "[" << num << "]";														// 目前筆數
+    for (int i = 0; i < m; i++)
+        cout << " " << ans[i] + 1;													// 從0開始的索引需要加一
+    cout << endl;
+}   // end outputSeries
+
+
+void PermutationN(int N, int level)
+{
+   if (level < N)
+   {
+      for (int i = 0; i < N; i++)
+        if (!used[i])
+        {   ans[level] = i;
+            used[i] = true;
+            PermutationN(N, level+1);
+            used[i] = false;
+        }   // end for-if
+    }   // end if
+    else
+    {
+       num++;
+       outputSeries();
+    }
+}
+
+
+void closeData()
+{   delete [] used;
+	delete [] ans;
+}
+
+
+int main()
+{
+   cout << "Input a number: " ;
+   cin >> m;
+   cout << endl;
+        if (openData(m))
+        PermutationN(m, 0);
+        closeData();
+   return 0;
+}
